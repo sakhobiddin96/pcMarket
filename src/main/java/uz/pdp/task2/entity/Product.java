@@ -18,8 +18,6 @@ public class Product {
     private String name;
     @Column(nullable = false)
     private Integer price;
-    @ManyToOne
-    private Category category;
     @OneToOne
     private Attachment attachment;
 }
