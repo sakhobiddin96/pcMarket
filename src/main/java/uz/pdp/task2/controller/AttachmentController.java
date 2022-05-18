@@ -3,6 +3,7 @@ package uz.pdp.task2.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,6 +25,8 @@ public class AttachmentController {
     AttachmentRepository attachmentRepository;
     @Autowired
     AttachmentContentRepository attachmentContentRepository;
+
+    @PreAuthorize(value = "hasAuthority(hasAuthority('ADD_PRODUCT'))")
     @PostMapping
     public HttpEntity<?> addAttachment(MultipartHttpServletRequest request) throws IOException {
         Iterator<String> fileNames = request.getFileNames();
